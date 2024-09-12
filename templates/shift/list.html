@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Shift List{% endblock %}
+
+{% block content %}
+    <div style="max-width: 800px; margin: 3cm auto; padding: 30px; border: 1px solid #ddd; border-radius: 12px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); background-color: #fafafa;">
+        <!-- Header -->
+        <header style="text-align: center; margin-bottom: 20px;">
+            <h2 style="color: #333;">Smenalar ro'yxati va qidiruvi</h2>
+        </header>
+
+        <!-- Search Form -->
+        <form method="get" style="margin-bottom: 20px; text-align: center;">
+            <input type="text" name="name" value="{{ name_filter }}" placeholder="Shift nomini kiriting" style="padding: 8px; width: 70%; border: 1px solid #ddd; border-radius: 4px;">
+            <button type="submit" style="padding: 8px 15px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Filtrlash</button>
+        </form>
+
+        <!-- Shift List -->
+        <ul style="list-style-type: none; padding: 0; margin: 0;">
+            {% for shift in shifts %}
+                <li style="background-color: #fff; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; padding: 15px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); position: relative;">
+                    <p style="text-decoration: none; color: #007bff; font-size: 18px; font-weight: bold;">{{ shift.name }}</p>
+                    <p style="margin: 5px 0; color: #555;">Smen boshlanishi: {{ shift.start_time|time:"H:i" }}</p>
+                    <p style="margin: 5px 0; color: #555;">Smen tugash vaqti: {{ shift.end_time|time:"H:i" }}</p>
+                    
+                    <!-- Edit and Delete Buttons -->
+                    <div style="position: absolute; top: 15px; right: 15px;">
+                        <a href="{% url 'shift_update' shift.pk %}" style="display: inline-block; margin-right: 5px; padding: 5px 10px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-size: 14px;">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="{% url 'shift_delete' shift.pk %}" style="display: inline-block; padding: 5px 10px; background-color: #d9534f; color: white; text-decoration: none; border-radius: 5px; font-size: 14px;">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                        
+                    </div>
+                </li>
+            {% empty %}
+                <li style="background-color: #fff; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; padding: 15px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                    No shifts available.
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

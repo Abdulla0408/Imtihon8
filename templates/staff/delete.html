@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div style="max-width: 500px; margin: 3cm auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff;">
+        <header style="text-align: center; margin-bottom: 20px;">
+            <h1 style="color: #d9534f;">Xodimni O'chirish</h1>
+        </header>
+        <form method="POST" action="{% url 'delete_staff' staff.pk %}">
+            {% csrf_token %}
+            <p style="text-align: center; font-size: 16px; color: #333;">
+                Diqqat! Siz <strong>{{ staff.first_name }} {{ staff.last_name }}</strong> xodimni o'chirishni tasdiqlaysizmi?
+            </p>
+            <div style="text-align: center; margin-top: 20px;">
+                <button type="submit" style="padding: 10px 20px; background-color: #d9534f; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">Ha, o'chirish</button>
+                <a href="{% url 'staff_list' %}" style="padding: 10px 20px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 5px; margin-left: 10px;">Yo'q, orqaga</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

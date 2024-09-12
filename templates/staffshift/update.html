@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div style="max-width: 600px; margin: 3cm auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff;">
+        <h1 style="text-align: center; color: #333;">Smen vaqtini ozgartirish</h1>
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div style="margin-bottom: 15px;">
+                <label for="shift" style="display: block; font-weight: bold; margin-bottom: 5px;">Shift:</label>
+                <select id="shift" name="shift" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    {% for shift in shifts %}
+                        <option value="{{ shift.id }}" {% if staffshift.shift.id == shift.id %}selected{% endif %}>
+                            {{ shift.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label for="date" style="display: block; font-weight: bold; margin-bottom: 5px;">Date:</label>
+                <input type="date" id="date" name="date" value="{{ staffshift.date }}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            
+            <div style="text-align: center;">
+                <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Update Staff Shift</button>
+            </div>
+        </form>
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{% url 'staffshift_list' %}" style="color: #007bff; text-decoration: none;">Back to List</a>
+        </div>
+    </div>
+{% endblock %}
+    

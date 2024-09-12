@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 3cm auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff;">
+    <header style="text-align: center; margin-bottom: 20px;">
+        <h1 style="color: #333;">Smenga biriktirilgan xodimlar</h1>
+        <a href="{% url 'staffshift_create' %}" style="display: inline-block; padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-size: 16px;">Yangi xodimni smenga biriktirish</a>
+    </header>
+    <ul style="list-style-type: none; padding: 0; margin: 0;">
+        {% for staffshift in staff_shifts %}
+        <li style="background-color: #fff; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; padding: 15px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); position: relative;">
+            <p style="margin: 0; font-size: 18px; color: #333;">
+                {{ staffshift.staff.first_name }} - {{ staffshift.shift.name }} - {{ staffshift.date|date:"Y-m-d" }}
+            </p>
+            <div style="position: absolute; right: 15px; top: 15px;">
+                <a href="{% url 'staffshift_update' staffshift.pk %}" style="display: inline-block; margin-right: 7px; padding: 7px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-size: 12px;">
+                    <i class="fas fa-edit" aria-hidden="true"></i>
+                </a>
+                <a href="{% url 'staffshift_delete' staffshift.pk %}" style="display: inline-block; padding: 7px; background-color: #d9534f; color: white; text-decoration: none; border-radius: 5px; font-size: 12px;">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+            </div>
+        </li>
+        {% empty %}
+        <li style="background-color: #fff; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; padding: 15px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            No staff shifts available.
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-flex align-items-center justify-content-between">
+                        <h4 class="mb-0 font-size-18">Boshqaruv paneli</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Lazzat</a></li>
+                                <li class="breadcrumb-item active">Boshqaruv paneli</li>
+                            </ol>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>     
+            <!-- end page title -->
+            <div class="row">
+               
+                <div class="col-xl-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="text-uppercase font-size-12 text-muted mb-3">Xodimlar</h6>
+                                    <span class="h3 mb-0">{{ staff_count }}</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="{% url 'staff_list' %}" class="btn btn-primary btn-sm">Ko'rish</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="text-uppercase font-size-12 text-muted mb-3">Lavozimlar</h6>
+                                    <span class="h3 mb-0">{{ position_count }}</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="{% url 'position_list' %}" class="btn btn-info btn-sm">Ko'rish</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="text-uppercase font-size-12 text-muted mb-3">Smenalar</h6>
+                                    <span class="h3 mb-0">{{ shift_count }}</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="{% url 'shift_list' %}" class="btn btn-success btn-sm">Ko'rish</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="text-uppercase font-size-12 text-muted mb-3">Davomat</h6>
+                                    <span class="h3 mb-0">{{ attendance_count }}</span>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="{% url 'attendance_list' %}" class="btn btn-warning btn-sm">Ko'rish</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+
+        </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    2023 © Lazzat.
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-right d-none d-sm-block">
+                        Lazzat kafesi boshqaruv tizimi
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!-- end main content-->
+
+{% endblock content %}

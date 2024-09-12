@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div style="max-width: 800px; margin: 3cm auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fafafa;">
+        <header style="text-align: center; margin-bottom: 20px;">
+            <h1 style="color: #333;">Xodimlar davomati ro'yhati</h1>
+        </header>
+
+        <ul style="list-style-type: none; padding: 0; margin: 0;">
+            {% for attendance in attendances %}
+                <li style="background-color: #fff; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; padding: 15px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                    <p style="margin: 0; font-size: 16px; color: #333;">
+                        {{ attendance.staff_shift.staff.first_name }} - {{ attendance.staff_shift.date }} - {{ attendance.status }}
+                    </p>
+                </li>
+            {% empty %}
+                <li style="background-color: #fff; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; padding: 15px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                    No attendances found.
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

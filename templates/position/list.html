@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Pozitsiyalar Ro'yxati{% endblock %}
+
+{% block content %}
+    <div style="margin-left: 7cm; margin-top: 3cm;">
+        <h2>Lavozimlar Ro'yxati</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Nom</th>
+                    <th>Tavsif</th>
+                    <th>Amallar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for position in positions %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ position.name }}</td>
+                        <td>{{ position.description }}</td>
+                        <td>
+                            <a href="{% url 'update_position' position.pk %}" class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{% url 'delete_position' position.pk %}" class="btn btn-sm btn-danger ml-1">
+                                <i class="fas fa-trash"></i>  
+                            </a>
+                            
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">Hech qanday pozitsiya topilmadi.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'create_position' %}" class="btn btn-success mt-2">Yangi lavozim qo'shish <i class="fas fa-plus"></i></a>
+    </div>
+{% endblock %}

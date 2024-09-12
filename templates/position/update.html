@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Lavozimni Tahrirlash{% endblock %}
+
+{% block content %}
+    <div style="margin-left: auto; margin-right: auto; margin-top: 2cm; max-width: 600px;">
+        <h2>Lavozimni Tahrirlash: {{ position.name }}</h2> <!-- Changed 'title' to 'name' for consistency -->
+        <form method="POST" class="form-group">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name">Nom:</label>
+                <input type="text" id="name" name="name" class="form-control" value="{{ position.name }}" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="description">Tavsif:</label>
+                <textarea id="description" name="description" class="form-control" required>{{ position.description }}</textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Saqlash</button>
+            <a href="{% url 'position_list' %}" class="btn btn-secondary">Orqaga</a>
+        </form>
+    </div>
+{% endblock %}

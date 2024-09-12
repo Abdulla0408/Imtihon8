@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}O'chirishni Tasdiqlash{% endblock %}
+
+{% block content %}
+    <div style="margin-left: 10cm; margin-top: 3cm;">
+        <div class="confirm-delete">
+            <h2>O'chirishni Tasdiqlash</h2>
+            <p class="warning">Diqqat! Siz <strong>{{ position.name }}</strong> lavozimini o'chirishni tasdiqlaysizmi?</p>
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Ha, o'chirish</button>
+                <a href="{% url 'position_list' %}" class="btn btn-secondary">Yo'q, orqaga</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .confirm-delete {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #fff;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .confirm-delete h2 {
+        color: #d9534f; /* Qizil rang */
+    }
+    .confirm-delete .warning {
+        color: #d9534f; /* Qizil rang */
+        font-weight: bold;
+    }
+    .confirm-delete button {
+        margin: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .btn-danger {
+        background-color: #d9534f; /* Qizil rang */
+        color: white;
+    }
+    .btn-secondary {
+        background-color: #6c757d; /* Kulrang rang */
+        color: white;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-4">Xush kelibsiz!</h1>
+            <p class="lead">Bizning kafe boshqaruv tizimimizga xush kelibsiz.</p>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Xodimlar</h5>
+                    <p class="card-text">Xodimlar ro'yxatini ko'rish va boshqarish.</p>
+                    <a href="{% url 'staff_list' %}" class="btn btn-primary">Xodimlarga o'tish</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Smenalar</h5>
+                    <p class="card-text">Smenalarni ko'rish va boshqarish.</p>
+                    <a href="{% url 'shift_list' %}" class="btn btn-primary">Smenalarga o'tish</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Davomat</h5>
+                    <p class="card-text">Xodimlar davomatini ko'rish va boshqarish.</p>
+                    <a href="{% url 'attendance_list' %}" class="btn btn-primary">Davomatga o'tish</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

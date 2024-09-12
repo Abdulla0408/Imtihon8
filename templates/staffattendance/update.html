@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div style="max-width: 600px; margin: 3cm auto; padding: 20px; border: 1px solid #ddd; border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fafafa;">
+        <h1 style="text-align: center; color: #333;">Update Staff Attendance</h1>
+
+        <form method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+            {% csrf_token %}
+            
+            <div style="display: flex; flex-direction: column;">
+                <label for="staff_shift" style="font-size: 16px; color: #555;">Staff Shift:</label>
+                <select id="staff_shift" name="staff_shift" style="padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+                    {% for staff_shift in staff_shifts %}
+                    <option value="{{ staff_shift.id }}" {% if attendance and attendance.staff_shift.id == staff_shift.id %}selected{% endif %}>
+                        {{ staff_shift.staff.first_name }} - {{ staff_shift.date }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+                <label for="check_in" style="font-size: 16px; color: #555;">Check In:</label>
+                <input type="datetime-local" id="check_in" name="check_in" value="{{ attendance.check_in|date:'Y-m-d\TH:i' }}" style="padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+                <label for="check_out" style="font-size: 16px; color: #555;">Check Out:</label>
+                <input type="datetime-local" id="check_out" name="check_out" value="{{ attendance.check_out|date:'Y-m-d\TH:i' }}" style="padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+            </div>
+
+            <div style="display: flex; flex-direction: column;">
+                <label for="status" style="font-size: 16px; color: #555;">Status:</label>
+                <select id="status" name="status" style="padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+                    <option value="present" {% if attendance and attendance.status == 'present' %}selected{% endif %}>Present</option>
+                    <option value="absent" {% if attendance and attendance.status == 'absent' %}selected{% endif %}>Absent</option>
+                    <option value="late" {% if attendance and attendance.status == 'late' %}selected{% endif %}>Late</option>
+                </select>
+            </div>
+
+            <button type="submit" style="padding: 10px 15px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">Update Attendance</button>
+        </form>
+
+        <a href="{% url 'attendance_list' %}" style="display: block; text-align: center; margin-top: 20px; font-size: 16px; color: #007bff; text-decoration: none;">Back to list</a>
+    </div>
+{% endblock %}

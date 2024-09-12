@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Qidiruv natijalari</h4>
+
+                            {% if query %}
+                                <p>Qidiruv so'rovi: "{{ query }}"</p>
+                            {% endif %}
+
+                            {% if staff_results %}
+                                <h5>Xodimlar</h5>
+                                <ul>
+                                    {% for staff in staff_results %}
+                                        <li>{{ staff.first_name }} {{ staff.last_name }} - {{ staff.phone_number }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
+                            {% if position_results %}
+                                <h5>Lavozimlar</h5>
+                                <ul>
+                                    {% for position in position_results %}
+                                        <li>{{ position.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
+                            {% if shift_results %}
+                                <h5>Smenalar</h5>
+                                <ul>
+                                    {% for shift in shift_results %}
+                                        <li>{{ shift.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
+                            {% if not staff_results and not position_results and not shift_results %}
+                                <p>Hech qanday natija topilmadi.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

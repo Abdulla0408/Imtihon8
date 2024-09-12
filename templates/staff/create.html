@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div style="max-width: 600px; margin: 3cm auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #fff;">
+        <header style="text-align: center; margin-bottom: 20px;">
+            <h1 style="color: #333;">Yangi Xodim Qo'shish</h1>
+        </header>
+        <form method="POST" action="{% url 'create_staff' %}">
+            {% csrf_token %}
+           
+            <div style="margin-bottom: 20px;">
+                <label for="position" style="display: block; font-weight: bold; margin-bottom: 5px;">Lavozim:</label>
+                <select name="position" id="position" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    {% for position in positions %}
+                    <option value="{{ position.id }}">{{ position.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="first_name" style="display: block; font-weight: bold; margin-bottom: 5px;">Ism:</label>
+                <input type="text" name="first_name" id="first_name" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="last_name" style="display: block; font-weight: bold; margin-bottom: 5px;">Familiya:</label>
+                <input type="text" name="last_name" id="last_name" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="phone_number" style="display: block; font-weight: bold; margin-bottom: 5px;">Telefon raqami:</label>
+                <input type="text" name="phone_number" id="phone_number" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 20px;">
+                <label for="hire_date" style="display: block; font-weight: bold; margin-bottom: 5px;">Yaratilgan sana:</label>
+                <input type="date" name="hire_date" id="hire_date" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <button type="submit" style="width: 100%; padding: 12px; background-color: #0a15ed; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">Saqlash</button>
+        </form>
+    </div>
+{% endblock %}
