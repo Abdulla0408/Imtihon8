@@ -11,9 +11,54 @@ import datetime
 from django.utils import timezone
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-
 from faker import Faker
 from .models import Position, Shift, Staff, StaffShift, StaffAttendance
+from faker import Faker
+from random import choice
+from datetime import timedelta
+from django.utils import timezone
+from django.http import HttpResponse
+
+
+def generate_fake_data(request):
+    fake = Faker()
+
+    for _ in range(10):
+        staff_member = Staff.objects.create(
+            full_name=fake.name(),
+            phone_number=fake.phone_number(),
+            address=fake.address(),
+            email=fake.email(),
+        )
+
+        position = Position.objects.create(
+            title=fake.job(),
+            description=fake.text(),
+            staff=staff_member
+        )
+
+        start_time = timezone.now() + timedelta(days=fake.random_int(min=1, max=10))
+        end_time = start_time + timedelta(hours=fake.random_int(min=4, max=8))
+        shift = Shift.objects.create(
+            start_time=start_time,
+            end_time=end_time
+        )
+
+        StaffShift.objects.create(
+            staff=staff_member,
+            shift=shift,
+            position=position
+        )
+
+        StaffAttendance.objects.create(
+            staff=staff_member,
+            shift=shift,
+            date=shift.start_time.date(),
+            status=choice(['Present', 'Absent', 'Late'])
+        )
+
+    return HttpResponse("Yolgon malumtolar yaratildi!")
+
 
 
 def login_view(request):
