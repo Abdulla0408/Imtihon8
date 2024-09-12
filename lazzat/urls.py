@@ -35,5 +35,4 @@ urlpatterns = [
 
     # Search
     path('search/', views.search, name='search'),
-    # path('fake-data/', include('fakeData.urls')),
 ]

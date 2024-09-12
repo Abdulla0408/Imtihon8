@@ -267,12 +267,10 @@ def shift_update(request, pk):
     shift = get_object_or_404(Shift, pk=pk)
     
     if request.method == 'POST':
-        # Retrieve form data
         name = request.POST.get('name')
         start_time = request.POST.get('start_time')
         end_time = request.POST.get('end_time')
 
-        # Update the Shift object and save it
         if name and start_time and end_time:
             shift.name = name
             shift.start_time = start_time
